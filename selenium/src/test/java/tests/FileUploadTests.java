@@ -12,7 +12,7 @@ public class FileUploadTests extends BaseTests {
     private final String pathToFile = MessageFormat
             .format("{0}/data/images/imageUploadTest.jpeg", System.getProperty("user.dir"));
 
-    @Test
+    @Test(testName = "Verify the file can be uploaded")
     public void fileUploadTest() {
         fileUploadPage = new FileUploadPage(driver);
         fileUploadPage.navigateTo();

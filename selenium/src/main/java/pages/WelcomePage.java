@@ -14,15 +14,15 @@ public class WelcomePage extends BasePage {
     }
 
     public Label welcomeMessage() {
-        return new Label(driver, welcomeMessageSelector);
+        return new Label(this.driver, this.welcomeMessageSelector);
     }
 
     public Label availableExamplesLabel() {
-        return new Label(driver, availableExamplesLabelSelector);
+        return new Label(this.driver, this.availableExamplesLabelSelector);
     }
 
     @Override
     public void navigateTo() {
-        driver.get(this.url);
+        this.driver.get(this.url);
     }
 }

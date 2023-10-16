@@ -2,19 +2,19 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
-    protected String url = "";
+    protected String url;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void navigateTo() {
-        driver.get(this.url);
+        this.driver.get(this.url);
     }
 
     public void refreshPage() {
-        driver.navigate().refresh();
+        this.driver.navigate().refresh();
     }
 }

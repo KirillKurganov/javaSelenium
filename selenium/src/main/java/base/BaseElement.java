@@ -2,8 +2,12 @@ package base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BaseElement {
+import java.time.Duration;
+
+public abstract class BaseElement {
     protected WebDriver driver;
     protected String selector;
 
@@ -12,11 +16,28 @@ public class BaseElement {
         this.selector = selector;
     }
 
-    public boolean isDisplayed() {
-        return driver.findElement(By.cssSelector(selector)).isDisplayed();
+    //Actions
+
+    public void click() {
+        this.driver.findElement(By.cssSelector(this.selector)).click();
     }
 
+    public boolean isDisplayed() {
+        return this.driver.findElement(By.cssSelector(this.selector)).isDisplayed();
+    }
+
+    //Verifications
     public String getText() {
-        return driver.findElement(By.cssSelector(selector)).getText();
+        return this.driver.findElement(By.cssSelector(this.selector)).getText();
+    }
+
+    public boolean containsText(String expectedValue) {
+        return this.driver.findElement(By.cssSelector(this.selector)).getText().contains(expectedValue);
+    }
+
+    //Waits
+    public void waitForElementDisplayed(int time) {
+        WebDriverWait wait = new WebDriverWait(this.driver, time > 0 ? Duration.ofSeconds(time) : Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(this.driver.findElement(By.cssSelector(this.selector))));
     }
 }
